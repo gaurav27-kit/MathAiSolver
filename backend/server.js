@@ -58,6 +58,7 @@ const ALLOWED_ORIGINS = [
   "null",
   /^http:\/\/localhost(:\d+)?$/,
   /^http:\/\/127\.0\.0\.1(:\d+)?$/,
+  process.env.FRONTEND_URL, // Allow the production frontend URL
 ];
 
 app.use(cors({
@@ -100,7 +101,7 @@ app.use(session({
   }),
   cookie: {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge:   30 * 24 * 60 * 60 * 1000, // 30 days in ms
     secure:   process.env.NODE_ENV === "production",
   },
