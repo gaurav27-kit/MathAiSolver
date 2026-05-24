@@ -3,13 +3,8 @@
     // 1. Enter your Render backend URL here once you deploy it:
     const RENDER_BACKEND_URL = 'https://mathaisolver.onrender.com';
 
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
-    // If running locally, connect to local backend (port 5000). Otherwise, connect to Render.
-    const fallbackBase = isLocalhost ? 'http://localhost:5000' : RENDER_BACKEND_URL;
-
-    const baseUrl = explicitBase || fallbackBase;
-    const appBase = explicitBase || fallbackBase;
+    const baseUrl = RENDER_BACKEND_URL;
+    const appBase = RENDER_BACKEND_URL;
 
     window.API_BASE = baseUrl;
     window.APP_BASE = appBase;
