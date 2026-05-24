@@ -1,16 +1,19 @@
-(function () {
+(function() {
     const explicitBase = window.localStorage.getItem('mathai_api_base');
-    const isLocalFile = window.location.protocol === 'file:';
-    const isLiveServer = window.location.port === '5173' || window.location.port === '5500';
-    const isBackendOrigin = !isLocalFile && !isLiveServer;
+    // 1. Enter your Render backend URL here once you deploy it:
+    const RENDER_BACKEND_URL = 'https://mathaisolver.onrender.com';
 
-    const fallbackBase = 'http://localhost:8080';
-    const baseUrl = explicitBase || (isLocalFile || isLiveServer ? fallbackBase : '');
-    const appBase = explicitBase || (isLiveServer ? fallbackBase : '');
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    // If running locally, connect to local backend (port 5000). Otherwise, connect to Render.
+    const fallbackBase = isLocalhost ? 'http://localhost:5000' : RENDER_BACKEND_URL;
+
+    const baseUrl = explicitBase || fallbackBase;
+    const appBase = explicitBase || fallbackBase;
 
     window.API_BASE = baseUrl;
     window.APP_BASE = appBase;
-    window.IS_BACKEND_ORIGIN = isBackendOrigin;
+    window.IS_BACKEND_ORIGIN = false; // We are hosting frontend and backend separately now
     window.BACKEND_LABEL = window.API_BASE || window.location.origin;
     window.buildApiUrl = function buildApiUrl(path) {
         return `${window.API_BASE}${path}`;
