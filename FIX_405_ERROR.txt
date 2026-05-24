@@ -1,0 +1,131 @@
+================================================================================
+                    FIX FOR "Registration failed (405)"
+================================================================================
+
+ERROR EXPLANATION:
+------------------
+HTTP 405 = "Method Not Allowed"
+
+This means:
+- The backend received your request
+- But rejected it because of CORS or middleware configuration
+- The old code is still running (you need to restart!)
+
+================================================================================
+                          SOLUTION (3 STEPS)
+================================================================================
+
+STEP 1: Stop the Backend Server
+--------------------------------
+Go to the terminal running the backend and press:
+
+    Ctrl + C
+
+
+STEP 2: Restart the Backend
+----------------------------
+In the same terminal, run:
+
+    npm start
+
+Wait for:
+    ✅ MathAI Solver backend running → http://localhost:8080
+
+
+STEP 3: Clear Browser Cache & Try Again
+----------------------------------------
+In your browser:
+    1. Press Ctrl + Shift + R (hard refresh)
+    OR
+    2. Press Ctrl + Shift + Delete → Clear cache
+    
+Then try to register again!
+
+================================================================================
+                          WHAT I FIXED
+================================================================================
+
+✅ Fixed CORS configuration:
+   - Added "Authorization" to allowed headers
+   - Added "Set-Cookie" to exposed headers
+   - Improved OPTIONS request handling
+   - Set optionsSuccessStatus to 204
+
+✅ Fixed middleware order:
+   - Moved body parser BEFORE rate limiting
+   - This prevents 405 errors on POST requests
+
+✅ Increased rate limit for development:
+   - Changed from 5 to 50 requests per 15 minutes
+   - Prevents rate limit issues during testing
+
+================================================================================
+                          VERIFY THE FIX
+================================================================================
+
+Test 1: Check Backend is Running
+---------------------------------
+Open browser: http://localhost:8080/api/health
+
+Should see:
+    {"status":"ok","ts":"..."}
+
+
+Test 2: Try Registration
+-------------------------
+1. Go to http://localhost:5173
+2. Click "Register"
+3. Fill in:
+   - Full Name: Your Name
+   - Email: test@example.com
+   - Password: password123
+4. Click "Complete Registration"
+
+Should see:
+    "Account created successfully. Redirecting..."
+
+Then redirect to solver page!
+
+================================================================================
+                          STILL GETTING 405?
+================================================================================
+
+If you still get 405 error after restarting:
+
+1. Make sure you STOPPED the old backend (Ctrl + C)
+2. Make sure you STARTED the new backend (npm start)
+3. Check the backend terminal for any error messages
+4. Clear browser cache completely
+5. Try in a different browser or incognito mode
+
+================================================================================
+                          OTHER POSSIBLE ERRORS
+================================================================================
+
+If you get different errors:
+
+400 = Bad Request (validation error)
+      → Check your input fields
+
+401 = Unauthorized (not logged in)
+      → Normal for /api/auth/me when not logged in
+
+404 = Not Found (wrong URL)
+      → Backend not running or wrong port
+
+429 = Too Many Requests (rate limited)
+      → Wait 15 minutes or restart backend
+
+500 = Server Error (backend crash)
+      → Check backend terminal for error details
+
+================================================================================
+                          NEED MORE HELP?
+================================================================================
+
+Read these files:
+- RESTART_SERVERS.txt - How to restart properly
+- TROUBLESHOOTING.md - Complete troubleshooting guide
+- START_HERE.txt - Quick start guide
+
+================================================================================

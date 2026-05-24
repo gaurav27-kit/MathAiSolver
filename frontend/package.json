@@ -1,0 +1,14 @@
+{
+    "name": "maths-solver-frontend",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "test:nerdamer": "node tests/test-nerdamer.js"
+    },
+    "dependencies": {
+        "nerdamer": "^1.1.13"
+    },
+    "devDependencies": {
+        "live-server": "^1.2.2"
+    }
+}

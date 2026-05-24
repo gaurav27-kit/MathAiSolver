@@ -1,0 +1,136 @@
+================================================================================
+                    HOW TO RESTART THE SERVERS
+================================================================================
+
+IMPORTANT: After making code changes, you MUST restart the servers!
+
+================================================================================
+                          STEP-BY-STEP RESTART
+================================================================================
+
+STEP 1: Stop the Backend Server
+--------------------------------
+Go to the terminal window running the backend and press:
+
+    Ctrl + C
+
+You should see the server stop.
+
+
+STEP 2: Stop the Frontend Server
+---------------------------------
+Go to the terminal window running the frontend and press:
+
+    Ctrl + C
+
+You should see the server stop.
+
+
+STEP 3: Restart Backend
+------------------------
+In the backend terminal, run:
+
+    npm start
+
+Wait until you see:
+    ✅ MathAI Solver backend running → http://localhost:8080
+
+
+STEP 4: Restart Frontend
+-------------------------
+In the frontend terminal, run:
+
+    npx live-server --port=5173 --host=localhost
+
+Wait until you see:
+    Serving "..." at http://localhost:5173
+
+
+STEP 5: Clear Browser Cache
+----------------------------
+In your browser:
+    1. Press Ctrl + Shift + Delete
+    2. Select "Cached images and files"
+    3. Click "Clear data"
+    4. Close and reopen the browser tab
+
+
+STEP 6: Test Again
+-------------------
+Go to: http://localhost:5173
+Try to register or login
+
+================================================================================
+                          QUICK RESTART (EASIEST)
+================================================================================
+
+1. Close both terminal windows (or press Ctrl + C in each)
+2. Double-click: start-both.bat
+3. Wait for both servers to start
+4. Clear browser cache (Ctrl + Shift + Delete)
+5. Try again
+
+================================================================================
+                          VERIFY IT'S WORKING
+================================================================================
+
+Test 1: Backend Health Check
+-----------------------------
+Open browser: http://localhost:8080/api/health
+
+Should see:
+    {"status":"ok","ts":"2026-05-17T..."}
+
+
+Test 2: Frontend Loads
+-----------------------
+Open browser: http://localhost:5173
+
+Should see the MathAI homepage
+
+
+Test 3: Registration Works
+---------------------------
+1. Go to http://localhost:5173
+2. Click "Get Started" or "Register"
+3. Fill in the form
+4. Click "Complete Registration"
+5. Should redirect to solver page
+
+================================================================================
+                          COMMON MISTAKES
+================================================================================
+
+❌ Forgot to restart after code changes
+   → Always restart both servers after any code change
+
+❌ Only restarted one server
+   → Must restart BOTH backend and frontend
+
+❌ Didn't clear browser cache
+   → Old JavaScript files are cached, press Ctrl + Shift + Delete
+
+❌ Wrong terminal window
+   → Make sure you're in the right directory (backend/ or frontend/)
+
+❌ Port already in use
+   → Another instance is still running, kill it first
+
+================================================================================
+                          KILL STUCK PROCESSES
+================================================================================
+
+If servers won't start because port is in use:
+
+For Backend (port 8080):
+------------------------
+netstat -ano | findstr :8080
+taskkill /PID <PID_NUMBER> /F
+
+
+For Frontend (port 5173):
+-------------------------
+netstat -ano | findstr :5173
+taskkill /PID <PID_NUMBER> /F
+
+================================================================================

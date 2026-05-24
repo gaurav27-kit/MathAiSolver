@@ -1,0 +1,169 @@
+================================================================================
+                    DIAGNOSING THE 405 ERROR
+================================================================================
+
+The 405 error means "Method Not Allowed". Let's find out exactly what's wrong.
+
+================================================================================
+                          STEP 1: Check Backend Terminal
+================================================================================
+
+Look at the terminal window where the backend is running.
+
+Do you see any error messages like:
+- "Cannot find module 'helmet'"
+- "Cannot find module 'joi'"
+- "Cannot find module 'express-rate-limit'"
+
+If YES → The dependencies aren't installed!
+   Solution: Run this in the backend folder:
+   
+   cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend
+   npm install
+
+If NO → Continue to Step 2
+
+================================================================================
+                          STEP 2: Test with cURL
+================================================================================
+
+Open a NEW command prompt and run:
+
+curl -v -X POST http://localhost:8080/api/auth/register ^
+  -H "Content-Type: application/json" ^
+  -H "Origin: http://localhost:5173" ^
+  -d "{\"fullName\":\"Test\",\"email\":\"test@test.com\",\"password\":\"pass123\"}"
+
+Look at the output:
+
+If you see "< HTTP/1.1 405":
+   → The backend is rejecting the POST method
+   → Check if the backend actually restarted
+
+If you see "< HTTP/1.1 201" or "< HTTP/1.1 400":
+   → The backend is working!
+   → The problem is in the frontend
+
+If you see "Failed to connect":
+   → Backend is not running
+   → Start it with: cd backend && npm start
+
+================================================================================
+                          STEP 3: Check What's Running
+================================================================================
+
+Run this command:
+
+netstat -ano | findstr :8080
+
+You should see ONE line like:
+  TCP    0.0.0.0:8080    0.0.0.0:0    LISTENING    12345
+
+If you see MULTIPLE lines:
+   → Multiple backend instances are running!
+   → Kill them all:
+   
+   taskkill /F /IM node.exe
+
+   Then start fresh:
+   cd backend
+   npm start
+
+If you see NOTHING:
+   → Backend is not running
+   → Start it: cd backend && npm start
+
+================================================================================
+                          STEP 4: Use Simple Server
+================================================================================
+
+If dependencies aren't installed, use the simple server:
+
+1. Stop the current backend (Ctrl + C)
+
+2. Run the simple version:
+   cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend
+   node server-simple.js
+
+3. You should see:
+   ✅ MathAI Solver backend running → http://localhost:8080
+   Mode: SIMPLE (no helmet/rate-limit)
+
+4. Try registration again in the browser
+
+================================================================================
+                          STEP 5: Check Browser Network Tab
+================================================================================
+
+In your browser:
+1. Press F12 to open Developer Tools
+2. Go to "Network" tab
+3. Try to register
+4. Click on the "register" request in the list
+5. Look at:
+
+   - Request URL: Should be http://localhost:8080/api/auth/register
+   - Request Method: Should be POST
+   - Status Code: What number do you see?
+   
+   If 405:
+      → Look at "Response Headers"
+      → Look for "Allow:" header
+      → This tells you what methods ARE allowed
+   
+   If 0 or (failed):
+      → Backend not reachable
+      → Check backend is running
+
+================================================================================
+                          STEP 6: Check Request Headers
+================================================================================
+
+In the Network tab, under "Request Headers", verify:
+
+✓ Content-Type: application/json
+✓ Origin: http://localhost:5173
+
+If Origin is missing or different:
+   → Frontend is not sending correct headers
+   → Clear browser cache completely
+
+================================================================================
+                          MOST LIKELY CAUSES
+================================================================================
+
+1. Dependencies not installed (helmet, joi, express-rate-limit)
+   → Run: cd backend && npm install
+
+2. Backend not actually restarted
+   → Kill all node processes: taskkill /F /IM node.exe
+   → Start fresh: cd backend && npm start
+
+3. Multiple backend instances running
+   → Kill all: taskkill /F /IM node.exe
+   → Start one: cd backend && npm start
+
+4. Old code still cached
+   → Clear browser cache: Ctrl + Shift + Delete
+   → Hard refresh: Ctrl + Shift + R
+
+================================================================================
+                          QUICK FIX (TRY THIS FIRST)
+================================================================================
+
+1. Kill all Node processes:
+   taskkill /F /IM node.exe
+
+2. Install dependencies:
+   cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend
+   npm install
+
+3. Start simple server:
+   node server-simple.js
+
+4. Clear browser cache:
+   Ctrl + Shift + Delete
+
+5. Try registration again
+
+================================================================================

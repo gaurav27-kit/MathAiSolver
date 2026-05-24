@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathAI - Login / Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <style>
+        .auth-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
+        }
+        
+        .auth-card-wrapper {
+            width: 100%;
+            max-width: 480px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card-wrapper">
+            <div style="margin-bottom: 2rem; display: flex; justify-content: center;">
+                <div class="logo">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="5" x2="5" y2="19"></line>
+                        <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
+                    <span style="font-size: 1.5rem;">MathAI</span>
+                </div>
+            </div>
+
+            <section class="side-card">
+                <div class="side-card-header" style="justify-content: center; text-align: center; display: flex; flex-direction: column;">
+                    <p class="side-eyebrow">Account Access</p>
+                    <h3 id="accountTitle">Sign in to save progress</h3>
+                    <p class="side-copy" style="margin-top: 0.5rem;">Create an account or log in to store history and continue from where you left off.</p>
+                </div>
+
+                <div id="authFormArea" class="auth-form-area" style="margin-top: 1.5rem;">
+                    <div class="auth-toggle">
+                        <button id="showLoginBtn" class="toggle-btn active" type="button">Login</button>
+                        <button id="showRegisterBtn" class="toggle-btn" type="button">Register</button>
+                    </div>
+
+                    <div class="form-group is-hidden" id="nameGroup">
+                        <label for="authName">Full Name</label>
+                        <input type="text" id="authName" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="authEmail">Email</label>
+                        <input type="email" id="authEmail" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="authPassword">Password</label>
+                        <input type="password" id="authPassword" placeholder="Create a password">
+                    </div>
+
+                    <div id="authMessage" class="helper-text error-text"></div>
+                    <button id="authSubmitBtn" class="btn btn-primary auth-submit" type="button" style="margin-top: 0.5rem;">Login</button>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500;">
+                        &larr; Back to Solver
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="src/services/api-base.js"></script>
+    <script src="src/services/api-utils.js"></script>
+    <script src="src/pages/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+================================================================================
+                    MATHAI SOLVER - QUICK START GUIDE
+================================================================================
+
+IMPORTANT: You need to run commands from the correct directories!
+
+The error you got was because you ran "npm start" from the ROOT directory,
+but the package.json files are in the backend/ and frontend/ subdirectories.
+
+================================================================================
+                           EASIEST WAY TO START
+================================================================================
+
+1. Double-click: install-all.bat
+   (This installs all dependencies for both backend and frontend)
+
+2. Double-click: start-both.bat
+   (This starts both servers and opens your browser automatically)
+
+3. Done! The app will open at http://localhost:5173
+
+================================================================================
+                          MANUAL WAY (IF NEEDED)
+================================================================================
+
+STEP 1: Install Dependencies
+-----------------------------
+Open Command Prompt and run:
+
+    cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend
+    npm install
+
+Then:
+
+    cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\frontend
+    npm install
+
+
+STEP 2: Start Backend Server
+-----------------------------
+Open Command Prompt #1 and run:
+
+    cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend
+    npm start
+
+You should see: "✅ MathAI Solver backend running → http://localhost:8080"
+
+
+STEP 3: Start Frontend Server
+------------------------------
+Open Command Prompt #2 (NEW WINDOW) and run:
+
+    cd C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\frontend
+    npx live-server --port=5173 --host=localhost
+
+You should see the frontend start on port 5173
+
+
+STEP 4: Open Browser
+---------------------
+Go to: http://localhost:5173
+
+================================================================================
+                              WHAT YOU CAN DO
+================================================================================
+
+1. Register a new account
+2. Login with your credentials
+3. Solve math problems (algebra, calculus, etc.)
+4. View your history
+5. Track your progress
+6. Earn points and badges
+7. Compete on the leaderboard
+
+================================================================================
+                            TESTING THE API
+================================================================================
+
+To test if the backend is working, open your browser and go to:
+
+    http://localhost:8080/api/health
+
+You should see: {"status":"ok","ts":"2026-05-17T..."}
+
+================================================================================
+                              TROUBLESHOOTING
+================================================================================
+
+Problem: "Port 8080 is already in use"
+Solution: Another program is using port 8080. Find and close it:
+    netstat -ano | findstr :8080
+    taskkill /PID <PID_NUMBER> /F
+
+Problem: "npm is not recognized"
+Solution: Node.js is not installed or not in PATH. Install from nodejs.org
+
+Problem: "Cannot find module"
+Solution: Dependencies not installed. Run "npm install" in backend/ and frontend/
+
+Problem: CORS errors in browser
+Solution: Make sure BOTH servers are running (backend on 8080, frontend on 5173)
+
+================================================================================
+                            NEED MORE HELP?
+================================================================================
+
+Read these files:
+- README.md - Project overview
+- SETUP_GUIDE.md - Detailed setup instructions
+- backend/API_DOCUMENTATION.md - Complete API reference
+
+================================================================================
