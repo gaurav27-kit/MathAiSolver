@@ -1,5 +1,4 @@
 (function() {
-    const explicitBase = window.localStorage.getItem('mathai_api_base');
     // 1. Enter your Render backend URL here once you deploy it:
     const RENDER_BACKEND_URL = 'https://mathaisolver.onrender.com';
 
