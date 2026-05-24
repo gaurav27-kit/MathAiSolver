@@ -4,7 +4,7 @@
  * Checks /auth/user on every page load to see if the user is logged in.
  */
 
-const BACKEND = 'http://localhost:5000';
+const BACKEND = window.API_BASE || 'https://mathaisolver.onrender.com';
 
 /**
  * Fetch the currently logged-in Google user from the backend.

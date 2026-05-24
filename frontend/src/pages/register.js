@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = 'http://localhost:5000';
+    const API = window.API_BASE || 'https://mathaisolver.onrender.com';
 
     const registerForm = document.getElementById('registerForm');
     const authSubmitBtn = document.getElementById('authSubmitBtn');
