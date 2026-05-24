@@ -75,7 +75,7 @@ Now we bring the code and the database together on the server.
    ```
 3. Paste the following into the file, using your real MongoDB Atlas URI and a random secret string:
    ```env
-   MONGODB_URI="mongodb+srv://admin:myStrongPassword123@cluster0.mongodb.net/maths_solver?retryWrites=true&w=majority"
+   MONGODB_URI="mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@cluster0.mongodb.net/maths_solver?retryWrites=true&w=majority"
    SESSION_SECRET="put_some_long_random_string_here"
    PORT=8080
    NODE_ENV=production
