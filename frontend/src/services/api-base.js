@@ -1,6 +1,6 @@
 (function() {
     // 1. Enter your Render backend URL here once you deploy it:
-    const RENDER_BACKEND_URL = 'https://mathaisolver.onrender.com';
+    const RENDER_BACKEND_URL = 'https://math-ai-solver.onrender.com';
 
     const baseUrl = RENDER_BACKEND_URL;
     const appBase = RENDER_BACKEND_URL;
