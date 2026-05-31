@@ -11,6 +11,7 @@
 const express       = require("express");
 const Gamification  = require("../models/Gamification");
 const User          = require("../models/User");
+const GoogleUser    = require("../models/GoogleUser");
 const { requireAuth } = require("../middleware/auth");
 
 const router = express.Router();
@@ -184,8 +185,17 @@ router.get("/leaderboard", async (req, res, next) => {
 
     // Fetch user names in one query
     const userIds = topStats.map(s => s.userId);
-    const users   = await User.find({ _id: { $in: userIds } }).lean();
-    const userMap = Object.fromEntries(users.map(u => [u._id.toString(), u.fullName]));
+    const [users, googleUsers] = await Promise.all([
+      User.find({ _id: { $in: userIds } }).lean(),
+      GoogleUser.find({ _id: { $in: userIds } }).lean()
+    ]);
+    const userMap = {};
+    users.forEach(u => {
+      userMap[u._id.toString()] = u.fullName;
+    });
+    googleUsers.forEach(u => {
+      userMap[u._id.toString()] = u.name;
+    });
 
     const leaderboard = topStats.map((s, i) => ({
       rank:   i + 1,

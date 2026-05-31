@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.ensureBackendPage('/solver.html')) {
-        return;
-    }
-
     const themeToggle = document.getElementById('themeToggle');
     const moonIcon = document.getElementById('moonIcon');
     const sunIcon = document.getElementById('sunIcon');
@@ -172,31 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadHistory();
         await loadProgress();
         await loadGamification();
-        await checkGoogleSession(); // show Google user card if signed in via Google
-    }
-
-    // ─── Google OAuth session check ───────────────────────────────────────────
-
-    async function checkGoogleSession() {
-        if (!window.GoogleAuth) return;
-
-        try {
-            const { loggedIn, user } = await window.GoogleAuth.getGoogleUser();
-            const card  = document.getElementById('googleUserCard');
-            const nameEl  = document.getElementById('googleUserName');
-            const emailEl = document.getElementById('googleUserEmail');
-
-            if (loggedIn && user && card) {
-                if (nameEl)  nameEl.textContent  = user.name;
-                if (emailEl) emailEl.textContent = user.email;
-                card.style.display = 'block';
-                console.log('[google-auth] Signed in as:', user.email);
-            } else if (card) {
-                card.style.display = 'none';
-            }
-        } catch (err) {
-            console.warn('[google-auth] Session check failed:', err.message);
-        }
     }
 
     function initRippleEffect() {
@@ -704,11 +675,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderAuthState() {
         const loggedIn = Boolean(appState.user);
+        const isGoogle = loggedIn && appState.user.isGoogle;
 
         if (authStatus) authStatus.textContent = loggedIn ? `Signed in: ${appState.user.fullName}` : 'Guest Mode';
         if (authPageLinks) authPageLinks.classList.toggle('is-hidden', loggedIn);
-        if (accountSummary) accountSummary.classList.toggle('is-hidden', !loggedIn);
+        if (accountSummary) accountSummary.classList.toggle('is-hidden', !loggedIn || isGoogle);
         if (logoutBtn) logoutBtn.classList.toggle('is-hidden', !loggedIn);
+
+        // Google user card toggle
+        const googleUserCard = document.getElementById('googleUserCard');
+        if (googleUserCard) {
+            if (loggedIn && isGoogle) {
+                const nameEl  = document.getElementById('googleUserName');
+                const emailEl = document.getElementById('googleUserEmail');
+                if (nameEl)  nameEl.textContent  = appState.user.fullName;
+                if (emailEl) emailEl.textContent = appState.user.email;
+                googleUserCard.style.display = 'block';
+            } else {
+                googleUserCard.style.display = 'none';
+            }
+        }
 
         if (loggedIn) {
             if (accountTitle) accountTitle.textContent = 'Solver History';

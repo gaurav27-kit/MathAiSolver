@@ -52,7 +52,10 @@ async function destroySession(sessionId) {
 /** Build the Set-Cookie header value. */
 function cookieHeader(sessionId, maxAgeMs = SESSION_MAX_AGE_MS) {
   const maxAge = Math.floor(maxAgeMs / 1000);
-  return `${SESSION_COOKIE}=${encodeURIComponent(sessionId)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}`;
+  const isProduction = process.env.NODE_ENV === "production";
+  const sameSite = isProduction ? "None" : "Lax";
+  const secure   = isProduction ? "; Secure" : "";
+  return `${SESSION_COOKIE}=${encodeURIComponent(sessionId)}; Path=/; HttpOnly; SameSite=${sameSite}${secure}; Max-Age=${maxAge}`;
 }
 
 module.exports = {

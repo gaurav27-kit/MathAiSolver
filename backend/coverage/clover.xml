@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1779599944683" clover="3.2.0">
-  <project timestamp="1779599944684" name="All files">
-    <metrics statements="327" coveredstatements="192" conditionals="141" coveredconditionals="61" methods="52" coveredmethods="29" elements="520" coveredelements="282" complexity="0" loc="327" ncloc="327" packages="3" files="13" classes="13"/>
+<coverage generated="1780239876239" clover="3.2.0">
+  <project timestamp="1780239876239" name="All files">
+    <metrics statements="337" coveredstatements="199" conditionals="149" coveredconditionals="65" methods="53" coveredmethods="29" elements="539" coveredelements="293" complexity="0" loc="337" ncloc="337" packages="3" files="13" classes="13"/>
     <package name="middleware">
-      <metrics statements="22" coveredstatements="16" conditionals="16" coveredconditionals="9" methods="3" coveredmethods="2"/>
+      <metrics statements="24" coveredstatements="17" conditionals="18" coveredconditionals="10" methods="3" coveredmethods="2"/>
       <file name="auth.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\middleware\auth.js">
-        <metrics statements="18" coveredstatements="16" conditionals="12" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <metrics statements="20" coveredstatements="17" conditionals="14" coveredconditionals="10" methods="2" coveredmethods="2"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="11" count="65" type="stmt"/>
-        <line num="12" count="65" type="stmt"/>
-        <line num="13" count="65" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="65" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="25" type="stmt"/>
-        <line num="17" count="25" type="stmt"/>
-        <line num="18" count="25" type="cond" truecount="1" falsecount="1"/>
-        <line num="19" count="25" type="cond" truecount="1" falsecount="1"/>
-        <line num="20" count="25" type="cond" truecount="1" falsecount="1"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="29" count="65" type="stmt"/>
-        <line num="33" count="29" type="cond" truecount="2" falsecount="0"/>
-        <line num="34" count="4" type="stmt"/>
-        <line num="36" count="25" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+        <line num="12" count="65" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="65" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="65" type="stmt"/>
+        <line num="22" count="65" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="25" type="stmt"/>
+        <line num="24" count="25" type="stmt"/>
+        <line num="25" count="25" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="25" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="25" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="65" type="stmt"/>
+        <line num="40" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="43" count="25" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
       </file>
       <file name="googleAuthGuard.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\middleware\googleAuthGuard.js">
         <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -34,7 +36,7 @@
       </file>
     </package>
     <package name="routes">
-      <metrics statements="225" coveredstatements="136" conditionals="89" coveredconditionals="37" methods="35" coveredmethods="18"/>
+      <metrics statements="230" coveredstatements="139" conditionals="91" coveredconditionals="38" methods="36" coveredmethods="18"/>
       <file name="auth-simple.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\routes\auth-simple.js">
         <metrics statements="45" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
@@ -84,7 +86,7 @@
         <line num="98" count="0" type="stmt"/>
       </file>
       <file name="auth.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\routes\auth.js">
-        <metrics statements="38" coveredstatements="35" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
+        <metrics statements="38" coveredstatements="35" conditionals="8" coveredconditionals="7" methods="5" coveredmethods="5"/>
         <line num="10" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
@@ -93,112 +95,117 @@
         <line num="15" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
         <line num="20" count="29" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="25" count="28" type="stmt"/>
-        <line num="26" count="28" type="stmt"/>
-        <line num="28" count="28" type="stmt"/>
-        <line num="29" count="28" type="cond" truecount="2" falsecount="0"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="33" count="27" type="stmt"/>
-        <line num="39" count="27" type="stmt"/>
-        <line num="40" count="27" type="stmt"/>
-        <line num="41" count="27" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="49" count="3" type="stmt"/>
-        <line num="50" count="3" type="stmt"/>
-        <line num="51" count="3" type="stmt"/>
-        <line num="53" count="3" type="cond" truecount="4" falsecount="0"/>
-        <line num="54" count="2" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="66" count="2" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="77" count="2" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="81" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="28" type="stmt"/>
+        <line num="31" count="28" type="stmt"/>
+        <line num="33" count="28" type="stmt"/>
+        <line num="34" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="27" type="stmt"/>
+        <line num="44" count="27" type="stmt"/>
+        <line num="45" count="27" type="stmt"/>
+        <line num="46" count="27" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="58" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
       </file>
       <file name="gamification.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\routes\gamification.js">
-        <metrics statements="73" coveredstatements="63" conditionals="44" coveredconditionals="28" methods="11" coveredmethods="8"/>
+        <metrics statements="78" coveredstatements="66" conditionals="44" coveredconditionals="28" methods="12" coveredmethods="8"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="22" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="1" type="stmt"/>
         <line num="23" count="7" type="cond" truecount="1" falsecount="1"/>
         <line num="24" count="7" type="cond" truecount="1" falsecount="1"/>
         <line num="25" count="7" type="cond" truecount="1" falsecount="1"/>
         <line num="26" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="27" count="7" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="27" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="45" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="3" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
         <line num="66" count="3" type="stmt"/>
         <line num="67" count="3" type="stmt"/>
-        <line num="70" count="3" type="stmt"/>
-        <line num="71" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="72" count="3" type="stmt"/>
-        <line num="74" count="3" type="stmt"/>
-        <line num="76" count="3" type="cond" truecount="4" falsecount="0"/>
-        <line num="77" count="2" type="stmt"/>
-        <line num="79" count="1" type="stmt"/>
-        <line num="83" count="3" type="cond" truecount="4" falsecount="0"/>
-        <line num="84" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="85" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="87" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="91" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="94" count="3" type="stmt"/>
-        <line num="100" count="3" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="72" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="77" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="84" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="85" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="88" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="92" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="95" count="3" type="stmt"/>
         <line num="101" count="3" type="stmt"/>
-        <line num="103" count="3" type="stmt"/>
-        <line num="116" count="0" type="stmt"/>
-        <line num="121" count="1" type="stmt"/>
+        <line num="102" count="3" type="stmt"/>
+        <line num="104" count="3" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
         <line num="122" count="1" type="stmt"/>
         <line num="123" count="1" type="stmt"/>
-        <line num="124" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="126" count="7" type="stmt"/>
-        <line num="134" count="1" type="stmt"/>
-        <line num="136" count="0" type="stmt"/>
-        <line num="141" count="1" type="stmt"/>
-        <line num="142" count="4" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="125" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="127" count="7" type="stmt"/>
+        <line num="135" count="1" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
         <line num="143" count="4" type="stmt"/>
-        <line num="145" count="4" type="cond" truecount="3" falsecount="1"/>
-        <line num="146" count="0" type="stmt"/>
-        <line num="149" count="10" type="stmt"/>
-        <line num="150" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="151" count="1" type="stmt"/>
-        <line num="154" count="3" type="stmt"/>
+        <line num="144" count="4" type="stmt"/>
+        <line num="146" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="150" count="10" type="stmt"/>
+        <line num="151" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="152" count="1" type="stmt"/>
         <line num="155" count="3" type="stmt"/>
-        <line num="157" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="158" count="1" type="stmt"/>
-        <line num="161" count="2" type="stmt"/>
-        <line num="167" count="2" type="stmt"/>
-        <line num="172" count="0" type="stmt"/>
-        <line num="177" count="1" type="stmt"/>
+        <line num="156" count="3" type="stmt"/>
+        <line num="158" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="159" count="1" type="stmt"/>
+        <line num="162" count="2" type="stmt"/>
+        <line num="168" count="2" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
         <line num="178" count="1" type="stmt"/>
         <line num="179" count="1" type="stmt"/>
-        <line num="186" count="1" type="stmt"/>
+        <line num="180" count="1" type="stmt"/>
         <line num="187" count="1" type="stmt"/>
         <line num="188" count="1" type="stmt"/>
-        <line num="190" count="1" type="stmt"/>
-        <line num="197" count="1" type="stmt"/>
-        <line num="199" count="0" type="stmt"/>
-        <line num="203" count="1" type="stmt"/>
+        <line num="192" count="1" type="stmt"/>
+        <line num="193" count="1" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="196" count="1" type="stmt"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="200" count="1" type="stmt"/>
+        <line num="207" count="1" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="213" count="1" type="stmt"/>
       </file>
       <file name="googleAuth.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\routes\googleAuth.js">
         <metrics statements="27" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
@@ -280,7 +287,7 @@
       </file>
     </package>
     <package name="utils">
-      <metrics statements="80" coveredstatements="40" conditionals="36" coveredconditionals="15" methods="14" coveredmethods="9"/>
+      <metrics statements="83" coveredstatements="43" conditionals="40" coveredconditionals="17" methods="14" coveredmethods="9"/>
       <file name="crypto.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\utils\crypto.js">
         <metrics statements="10" coveredstatements="10" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="6" count="2" type="stmt"/>
@@ -338,7 +345,7 @@
         <line num="66" count="0" type="stmt"/>
       </file>
       <file name="session.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\utils\session.js">
-        <metrics statements="20" coveredstatements="17" conditionals="11" coveredconditionals="6" methods="5" coveredmethods="4"/>
+        <metrics statements="23" coveredstatements="20" conditionals="15" coveredconditionals="8" methods="5" coveredmethods="4"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
@@ -358,7 +365,10 @@
         <line num="49" count="0" type="stmt"/>
         <line num="54" count="29" type="stmt"/>
         <line num="55" count="29" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
+        <line num="56" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="58" count="29" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
       </file>
       <file name="validation.js" path="C:\Users\QUIKCARE COMPUTERS\Desktop\maths_solver\backend\utils\validation.js">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>

@@ -33,6 +33,8 @@ const path         = require("path");
 const express      = require("express");
 const cookieParser = require("cookie-parser");
 const cors         = require("cors");
+const helmet       = require("helmet");
+const rateLimit    = require("express-rate-limit");
 const session      = require("express-session");
 const { MongoStore } = require("connect-mongo");
 const passport     = require("./utils/passport");
@@ -52,13 +54,21 @@ const PORT         = Number(process.env.PORT || 5000);
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 const FRONTEND_DIR = path.resolve(__dirname, "..", "frontend");
 
+// ─── Security headers (helmet) ───────────────────────────────────────────────
+
+app.use(helmet({
+  contentSecurityPolicy: false, // disabled so Google Fonts / CDN scripts still load
+  crossOriginEmbedderPolicy: false,
+}));
+
 // ─── CORS ───────────────────────────────────────────────────────────────────
 
+// Filter out falsy values so an unset FRONTEND_URL doesn't accidentally match
 const ALLOWED_ORIGINS = [
   "null",
   /^http:\/\/localhost(:\d+)?$/,
   /^http:\/\/127\.0\.0\.1(:\d+)?$/,
-  process.env.FRONTEND_URL, // Allow the production frontend URL
+  ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 
 app.use(cors({
@@ -82,6 +92,16 @@ app.use(cors({
 // Handle OPTIONS preflight explicitly before any other middleware
 app.options("*", cors());
 
+// ─── Rate limiters ───────────────────────────────────────────────────────────
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,                  // max 20 login/register attempts per window
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Too many requests, please try again later." },
+});
+
 // ─── Core Middleware ─────────────────────────────────────────────────────────
 
 app.use(express.json({ limit: "1mb" }));
@@ -93,7 +113,7 @@ app.use(session({
   secret:            process.env.SESSION_SECRET || "fallback-secret-change-me",
   resave:            false,
   saveUninitialized: false,
-  store: new MongoStore({
+  store: MongoStore.create({
     mongoUrl:       process.env.MONGODB_URI,
     dbName:         "maths_solver",
     collectionName: "google_sessions",
@@ -112,8 +132,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ─── Existing cookie-based auth (for email/password login) ───────────────────
-
+// ─── Cookie-based auth (email/password) ──────────────────────────────────────
+// NOTE: Must run AFTER passport.session() so Passport can restore req.user
+// from the Google OAuth session first. attachUser only sets req.user when
+// there is a custom session cookie AND Passport hasn't already set a user.
 app.use(attachUser);
 
 // ─── Health-check ────────────────────────────────────────────────────────────
@@ -128,7 +150,7 @@ app.use("/auth", googleAuthRouter);
 
 // ─── Existing API Routes (/api/...) ──────────────────────────────────────────
 
-app.use("/api/auth",         authRouter);
+app.use("/api/auth",         authLimiter, authRouter);
 app.use("/api/history",      historyRouter);
 app.use("/api/progress",     progressRouter);
 app.use("/api/gamification", gamificationRouter);

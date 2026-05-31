@@ -2,8 +2,14 @@
     // 1. Enter your Render backend URL here once you deploy it:
     const RENDER_BACKEND_URL = 'https://math-ai-solver.onrender.com';
 
-    const baseUrl = RENDER_BACKEND_URL;
-    const appBase = RENDER_BACKEND_URL;
+    let baseUrl = RENDER_BACKEND_URL;
+
+    // Use local backend if frontend is running locally
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        baseUrl = 'http://localhost:5000';
+    }
+
+    const appBase = baseUrl;
 
     window.API_BASE = baseUrl;
     window.APP_BASE = appBase;

@@ -17,7 +17,12 @@ const { validate, registerSchema, loginSchema }   = require("../utils/validation
 const router = express.Router();
 
 function userPayload(user) {
-  return { id: user._id, fullName: user.fullName, email: user.email };
+  return {
+    id:       user._id,
+    fullName: user.fullName || user.name,
+    email:    user.email,
+    isGoogle: !!user.googleId,
+  };
 }
 
 // POST /api/auth/register

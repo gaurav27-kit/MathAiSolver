@@ -9,8 +9,15 @@ const { SESSION_COOKIE, getSession } = require("../utils/session");
 
 async function attachUser(req, res, next) {
   const sessionId = req.cookies?.[SESSION_COOKIE];
-  req.user      = null;
   req.sessionId = sessionId || null;
+
+  // If Passport already restored a Google OAuth user via passport.session(),
+  // do NOT overwrite req.user — just move on.
+  if (req.user) {
+    return next();
+  }
+
+  req.user = null;
 
   if (sessionId) {
     try {
