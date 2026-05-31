@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = window.API_BASE || 'https://math-ai-solver.onrender.com';
+    const API = window.API_BASE || 'https://mathaisolver-backend-1.onrender.com';
 
     let authMode = 'login';
 
