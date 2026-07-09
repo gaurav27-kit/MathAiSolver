@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mathaisolver-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false   # set manually on Render dashboard
+      - key: SESSION_SECRET
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_CALLBACK_URL
+        value: https://mathaisolver-backend-1.onrender.com/auth/google/callback
+      - key: FRONTEND_URL
+        value: https://math-ai-solver-eight.vercel.app

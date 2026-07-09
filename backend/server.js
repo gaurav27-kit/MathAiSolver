@@ -68,6 +68,8 @@ const ALLOWED_ORIGINS = [
   "null",
   /^http:\/\/localhost(:\d+)?$/,
   /^http:\/\/127\.0\.0\.1(:\d+)?$/,
+  /^https?:\/\/.*\.vercel\.app$/,       // any Vercel preview/production URL
+  /^https?:\/\/.*\.onrender\.com$/,     // Render preview URLs
   ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 
@@ -113,11 +115,11 @@ app.use(session({
   secret:            process.env.SESSION_SECRET || "fallback-secret-change-me",
   resave:            false,
   saveUninitialized: false,
-  store: MongoStore.create({
+  store: new MongoStore({
     mongoUrl:       process.env.MONGODB_URI,
     dbName:         "maths_solver",
     collectionName: "google_sessions",
-    ttl:            30 * 24 * 60 * 60, // 30 days in seconds
+    ttl:            30 * 24 * 60 * 60,
   }),
   cookie: {
     httpOnly: true,

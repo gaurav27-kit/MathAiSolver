@@ -1,22 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = window.API_BASE || 'https://mathaisolver-backend-1.onrender.com';
+    const API = window.BACKEND_API || 'http://localhost:5000';
 
     let authMode = 'login';
 
-    const showLoginBtn   = document.getElementById('showLoginBtn');
-    const showRegisterBtn = document.getElementById('showRegisterBtn');
-    const authSubmitBtn  = document.getElementById('authSubmitBtn');
-    const authNameInput  = document.getElementById('authName');
-    const nameGroup      = document.getElementById('nameGroup');
-    const authEmailInput = document.getElementById('authEmail');
+    const showLoginBtn      = document.getElementById('showLoginBtn');
+    const showRegisterBtn   = document.getElementById('showRegisterBtn');
+    const authSubmitBtn     = document.getElementById('authSubmitBtn');
+    const authNameInput     = document.getElementById('authName');
+    const nameGroup         = document.getElementById('nameGroup');
+    const authEmailInput    = document.getElementById('authEmail');
     const authPasswordInput = document.getElementById('authPassword');
-    const authMessage    = document.getElementById('authMessage');
-    const accountTitle   = document.getElementById('accountTitle');
+    const authMessage       = document.getElementById('authMessage');
+    const accountTitle      = document.getElementById('accountTitle');
 
     showLoginBtn.addEventListener('click', () => setAuthMode('login'));
     showRegisterBtn.addEventListener('click', () => setAuthMode('register'));
     authSubmitBtn.addEventListener('click', handleAuthSubmit);
-
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) handleAuthSubmit();
     });
@@ -58,10 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             authSubmitBtn.disabled = true;
             authSubmitBtn.style.opacity = '0.7';
 
-            const url = authMode === 'login'
-                ? `${API}/api/auth/login`
-                : `${API}/api/auth/register`;
-
+            const url = `${API}/api/auth/${authMode === 'login' ? 'login' : 'register'}`;
             const response = await fetch(url, {
                 method: 'POST',
                 credentials: 'include',
@@ -83,17 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
             authMessage.style.color = '#156753';
             authMessage.textContent = authMode === 'login'
                 ? 'Login successful. Redirecting...'
-                : 'Account created successfully. Redirecting...';
+                : 'Account created! Redirecting...';
 
-            setTimeout(() => {
-                window.location.href = 'solver.html';
-            }, 800);
+            setTimeout(() => { window.location.href = 'solver.html'; }, 800);
 
         } catch (error) {
             authMessage.style.color = 'var(--error-color)';
             const msg = String(error?.message || '');
             authMessage.textContent = msg === 'Failed to fetch'
-                ? `Cannot reach backend at ${API}. Make sure it is running.`
+                ? `Cannot reach backend at ${API}.`
                 : msg || 'Authentication failed.';
         } finally {
             authSubmitBtn.disabled = false;

@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = window.API_BASE || 'https://mathaisolver-backend-1.onrender.com';
+    const API = window.BACKEND_API || 'http://localhost:5000';
 
-    const loginForm = document.getElementById('loginForm');
-    const authSubmitBtn = document.getElementById('authSubmitBtn');
-    const authEmailInput = document.getElementById('authEmail');
+    const loginForm         = document.getElementById('loginForm');
+    const authSubmitBtn     = document.getElementById('authSubmitBtn');
+    const authEmailInput    = document.getElementById('authEmail');
     const authPasswordInput = document.getElementById('authPassword');
-    const authMessage = document.getElementById('authMessage');
+    const authMessage       = document.getElementById('authMessage');
 
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-
         authMessage.textContent = '';
         authMessage.style.color = '';
 
@@ -57,16 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             authMessage.style.color = '#10b981';
             authMessage.textContent = 'Login successful. Redirecting...';
-
-            setTimeout(() => {
-                window.location.href = 'solver.html';
-            }, 800);
+            setTimeout(() => { window.location.href = 'solver.html'; }, 800);
 
         } catch (error) {
             authMessage.style.color = 'var(--error-color, #ef4444)';
             const msg = String(error?.message || '');
             authMessage.textContent = msg === 'Failed to fetch'
-                ? `Cannot reach backend at ${API}. Make sure it is running.`
+                ? `Cannot reach backend at ${API}.`
                 : msg || 'Login failed.';
         } finally {
             authSubmitBtn.disabled = false;

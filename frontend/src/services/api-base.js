@@ -1,42 +1,25 @@
-(function() {
-    // 1. Enter your Render backend URL here once you deploy it:
-    const RENDER_BACKEND_URL = 'https://mathaisolver-backend-1.onrender.com';
+(function () {
+    // ── Backend URL ───────────────────────────────────────────────────────────
+    // Local dev → http://localhost:5000
+    // Production (Vercel) → your Render backend URL
+    const RENDER_URL = 'https://mathaisolver-backend-1.onrender.com';
+    const LOCAL_URL  = 'http://localhost:5000';
 
-    let baseUrl = RENDER_BACKEND_URL;
+    const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
+    const baseUrl = isLocal ? LOCAL_URL : RENDER_URL;
 
-    // Use local backend if frontend is running locally
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        baseUrl = 'http://localhost:5000';
-    }
+    // Expose for all scripts
+    window.API_BASE     = baseUrl;
+    window.APP_BASE     = '';          // same-origin for app pages (relative links)
+    window.BACKEND_API  = baseUrl;     // used by login/register/auth/google-auth
+    window.BACKEND_LABEL = baseUrl;
 
-    const appBase = baseUrl;
+    window.buildApiUrl = (path) => `${baseUrl}${path}`;
+    window.buildAppUrl = (path) => path; // relative — works on both Vercel and local
 
-    window.API_BASE = baseUrl;
-    window.APP_BASE = appBase;
-    window.IS_BACKEND_ORIGIN = false; // We are hosting frontend and backend separately now
-    window.BACKEND_LABEL = window.API_BASE || window.location.origin;
-    window.buildApiUrl = function buildApiUrl(path) {
-        return `${window.API_BASE}${path}`;
-    };
-    window.buildAppUrl = function buildAppUrl(path) {
-        return `${window.APP_BASE}${path}`;
-    };
-    window.ensureBackendPage = function ensureBackendPage(path) {
-        if (window.IS_BACKEND_ORIGIN) {
-            return false;
-        }
+    // No longer needed but kept to avoid errors in any old code that calls it
+    window.ensureBackendPage = () => false;
 
-        const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-        const target = window.buildAppUrl(normalizedPath);
-
-        if (window.location.href !== target) {
-            window.location.replace(target);
-            return true;
-        }
-
-        return false;
-    };
-    window.getBackendLabel = function getBackendLabel() {
-        return window.BACKEND_LABEL;
-    };
+    window.IS_BACKEND_ORIGIN = false;
+    window.getBackendLabel   = () => baseUrl;
 })();
